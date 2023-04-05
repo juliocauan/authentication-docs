@@ -29,8 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                default: 'User registered successfully!'
+                $ref: '#/components/schemas/OkMessage'
         '400':
           description: 'Bad Request in form! Could not register new User!'
 
@@ -202,6 +201,13 @@ components:
           type: array
           items:
             type: string
+    OkMessage:
+      type: object
+      required:
+        - 'message'
+      properties:
+        message:
+          type: string
 
     SignupForm:
       type: object
