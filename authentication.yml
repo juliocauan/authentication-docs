@@ -236,6 +236,7 @@ components:
       format: email
       description: 'User e-mail for contact and to redefine lost password [UNIQUE]'
       example: 'example@example.com'
+      minLength: 3
       maxLength: 50
     Password:
       type: string
