@@ -62,7 +62,7 @@ paths:
         - 'profile'
       summary: 'Send email to user to update profile password'
       description: 'Access enabled to anyone'
-      operationId: alterUserPasswordByEmail
+      operationId: sendPasswordResetEmail
       requestBody:
         required: true
         content:
@@ -75,8 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                default: 'Email sent to User! Please click on the link and update your password'
+                $ref: '#/components/schemas/OkMessage'
         '404':
           description: 'User not registered!'
 
