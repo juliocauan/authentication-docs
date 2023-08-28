@@ -8,6 +8,7 @@ tags:
   - name: 'auth'
   - name: 'admin'
   - name: 'profile'
+  - name: 'resetPassword'
 
 paths:
   /api/auth/signup:
@@ -59,7 +60,7 @@ paths:
   /api/auth/forgotpassword:
     patch:
       tags:
-        - 'profile'
+        - 'resetPassword'
       summary: 'Send email to user to update profile password'
       description: 'Access enabled to anyone'
       operationId: sendPasswordResetEmail
