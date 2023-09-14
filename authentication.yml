@@ -58,18 +58,47 @@ paths:
           description: 'Unauthorized!'
 
   /api/auth/forgotpassword:
-    patch:
+    post:
       tags:
         - 'resetPassword'
       summary: 'Send email to user to update profile password'
       description: 'Access enabled to anyone'
-      operationId: sendPasswordResetEmail
+      operationId: sendResetPasswordEmail
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Username'
+      responses:
+        '200':
+          description: 'Successfuly sent email to User!'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkMessage'
+        '404':
+          description: 'User not registered!'
+    
+  /api/auth/forgotpassword/{token}:  
+    patch:
+      tags:
+        - 'resetPassword'
+      summary: 'Reset User password by link'
+      description: 'Access enabled to anyone'
+      operationId: resetPasswordByLink
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordLinkUpdate'
       responses:
         '200':
           description: 'Successfuly sent email to User!'
@@ -323,6 +352,16 @@ components:
           $ref: '#/components/schemas/Password'
         newPasswordConfirmation:
           $ref: '#/components/schemas/Password'
+    PasswordLinkUpdate:
+      type: object
+      required:
+        - 'newPassword'
+        - 'newPasswordConfirmation'
+      properties:
+        newPassword:
+          $ref: '#/components/schemas/Password'
+        newPasswordConfirmation:
+          $ref: '#/components/schemas/Password' 
 
   securitySchemes:
     bearerAuth:
