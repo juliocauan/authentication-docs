@@ -232,9 +232,9 @@ components:
     OkMessage:
       type: object
       required:
-        - 'message'
+        - 'body'
       properties:
-        message:
+        body:
           type: string
 
     SignupForm:
