@@ -8,7 +8,7 @@ tags:
   - name: 'auth'
   - name: 'admin'
   - name: 'profile'
-  - name: 'resetPassword'
+  - name: 'passwordReset'
 
 paths:
   /api/auth/signup:
@@ -60,7 +60,7 @@ paths:
   /api/auth/forgotpassword:
     post:
       tags:
-        - 'resetPassword'
+        - 'passwordReset'
       summary: 'Send email to user to update profile password'
       description: 'Access enabled to anyone'
       operationId: sendResetPasswordEmail
@@ -83,7 +83,7 @@ paths:
   /api/auth/forgotpassword/{token}:  
     patch:
       tags:
-        - 'resetPassword'
+        - 'passwordReset'
       summary: 'Reset User password by link'
       description: 'Access enabled to anyone'
       operationId: resetPasswordByLink
@@ -98,7 +98,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PasswordLinkUpdate'
+              $ref: '#/components/schemas/NewPasswordForm'
       responses:
         '200':
           description: 'Successfuly sent email to User!'
@@ -140,7 +140,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PasswordUpdate'
+              $ref: '#/components/schemas/PasswordUpdateForm'
       responses:
         '200':
           description: 'User Password updated successfully!'
@@ -339,28 +339,32 @@ components:
           uniqueItems: true
           items:
             $ref: '#/components/schemas/EnumRole'
-    PasswordUpdate:
+    PasswordUpdateForm:
       type: object
       required:
         - 'oldPassword'
-        - 'newPassword'
-        - 'newPasswordConfirmation'
+        - 'newPasswordMatch'
       properties:
         oldPassword:
           $ref: '#/components/schemas/Password'
-        newPassword:
-          $ref: '#/components/schemas/Password'
-        newPasswordConfirmation:
-          $ref: '#/components/schemas/Password'
-    PasswordLinkUpdate:
+        newPasswordMatch:
+          $ref: '#/components/schemas/PasswordMatch'
+    NewPasswordForm:
       type: object
       required:
-        - 'newPassword'
-        - 'newPasswordConfirmation'
+        - 'newPasswordMatch'
       properties:
-        newPassword:
+        newPasswordMatch:
+          $ref: '#/components/schemas/PasswordMatch'
+    PasswordMatch:
+      type: object
+      required:
+        - 'password'
+        - 'passwordConfirmation'
+      properties:
+        password:
           $ref: '#/components/schemas/Password'
-        newPasswordConfirmation:
+        passwordConfirmation:
           $ref: '#/components/schemas/Password' 
 
   securitySchemes:
