@@ -285,21 +285,12 @@ components:
       required:
         - 'token'
         - 'type'
-        - 'username'
-        - 'roles'
       properties:
         token:
           type: string
         type:
           type: string
           default: 'Bearer'
-        username:
-          $ref: '#/components/schemas/Username'
-        roles:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/EnumRole'
     Profile:
       type: object
       properties:
