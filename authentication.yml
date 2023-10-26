@@ -199,14 +199,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProfileRoles'
+              $ref: '#/components/schemas/AlterUserRolesForm'
       responses:
         '200':
           description: 'Patched User Roles successfully!'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProfileRoles'
+                $ref: '#/components/schemas/AlterUserRolesForm'
         '403':
           description: 'Forbidden!'
         '404':
@@ -305,7 +305,7 @@ components:
       properties:
         username:
           $ref: '#/components/schemas/Username'
-    ProfileRoles:
+    AlterUserRolesForm:
       type: object
       required:
         - 'username'
