@@ -98,7 +98,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewPasswordForm'
+              $ref: '#/components/schemas/PasswordMatch'
       responses:
         '200':
           description: 'Successfuly sent email to User!'
@@ -338,13 +338,6 @@ components:
       properties:
         oldPassword:
           $ref: '#/components/schemas/Password'
-        newPasswordMatch:
-          $ref: '#/components/schemas/PasswordMatch'
-    NewPasswordForm:
-      type: object
-      required:
-        - 'newPasswordMatch'
-      properties:
         newPasswordMatch:
           $ref: '#/components/schemas/PasswordMatch'
     PasswordMatch:
