@@ -210,11 +210,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlterUserRolesForm'
+                $ref: '#/components/schemas/OkMessage'
+        '401':
+          description: 'Unauthorized!'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
         '403':
           description: 'Forbidden!'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
         '404':
-          description: 'User not found!'
+          description: 'User not Found!'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
 
 components:
   schemas:
@@ -353,7 +367,7 @@ components:
         password:
           $ref: '#/components/schemas/Password'
         passwordConfirmation:
-          $ref: '#/components/schemas/Password' 
+          $ref: '#/components/schemas/Password'
 
   securitySchemes:
     bearerAuth:
