@@ -188,8 +188,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: 'Unauthorized!'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
         '403':
           description: 'Forbidden!'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
     patch:
       tags:
         - 'admin'
