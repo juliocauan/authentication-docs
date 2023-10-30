@@ -257,6 +257,13 @@ components:
           type: array
           items:
             type: string
+    AuthenticationError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
     OkMessage:
       type: object
       required:
