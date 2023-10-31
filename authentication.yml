@@ -1,7 +1,7 @@
 openapi: '3.0.3'
 info:
   title: KeyWarden
-  version: '0.10.4'
+  version: '0.10.5'
 servers:
   - url: https://api.server.test/v1
 tags:
@@ -191,7 +191,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlterUserRolesForm'
+              $ref: '#/components/schemas/UpdateUserRolesForm'
       responses:
         '200':
           $ref: '#/components/responses/OK'
@@ -299,7 +299,7 @@ components:
       properties:
         username:
           $ref: '#/components/schemas/Username'
-    AlterUserRolesForm:
+    UpdateUserRolesForm:
       type: object
       required:
         - 'username'
@@ -316,6 +316,7 @@ components:
     UserId:
       type: string
       format: uuid
+      example: 550e8400-e29b-41d4-a716-446655440000
     UserInfo:
       type: object
       required:
@@ -324,8 +325,7 @@ components:
         - 'roles'
       properties:
         id:
-          type: string
-          format: uuid
+          $ref: '#/components/schemas/UserId'
         username:
           $ref: '#/components/schemas/Username'
         roles:
@@ -336,10 +336,10 @@ components:
     PasswordUpdateForm:
       type: object
       required:
-        - 'oldPassword'
+        - 'currentPassword'
         - 'newPasswordMatch'
       properties:
-        oldPassword:
+        currentPassword:
           $ref: '#/components/schemas/Password'
         newPasswordMatch:
           $ref: '#/components/schemas/PasswordMatch'
