@@ -1,7 +1,7 @@
 openapi: '3.0.3'
 info:
   title: KeyWarden
-  version: '0.10.5'
+  version: '0.10.6'
 servers:
   - url: https://api.server.test/v1
 tags:
@@ -108,7 +108,7 @@ paths:
       tags:
         - 'profile'
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       summary: 'Get user profile content'
       description: 'Access enabled to Authenticated users [Any Role]'
       operationId: profileContent
@@ -125,7 +125,7 @@ paths:
       tags:
         - 'profile'
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       summary: 'Update user password'
       description: 'Access enabled to Authenticated users [Any Role]'
       operationId: updateUserPassword
@@ -148,7 +148,7 @@ paths:
       tags:
         - 'admin'
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       summary: 'Get list of users'
       description: 'Access enabled to role: Admin'
       operationId: getAllUsers
@@ -182,7 +182,7 @@ paths:
       tags:
         - 'admin'
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       summary: 'Update user roles'
       description: 'Access enabled to role: Admin'
       operationId: updateUserRoles
@@ -362,7 +362,7 @@ components:
           schema:
             $ref: '#/components/schemas/OkMessage'
     Unauthorized:
-      description: 'Operation failed due to lack of authentication'
+      description: 'Operation failed: not authenticated'
       content:
         application/json:
           schema:
@@ -380,14 +380,14 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
     Forbidden:
-      description: 'Operation failed due to lack of authorization'
+      description: 'Operation failed: no authorization'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/AuthenticationError'
   
   securitySchemes:
-    bearerAuth:
+    BearerAuth:
       scheme: bearer
       type: http
       bearerFormat: JWT
