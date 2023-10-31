@@ -1,7 +1,7 @@
 openapi: '3.0.3'
 info:
   title: KeyWarden
-  version: '0.10.3'
+  version: '0.10.4'
 servers:
   - url: https://api.server.test/v1
 tags:
@@ -149,14 +149,14 @@ paths:
         - 'admin'
       security:
         - bearerAuth: []
-      summary: 'List of Users registrated'
-      description: 'Access enabled only to Admin'
+      summary: 'Get list of users'
+      description: 'Access enabled to role: Admin'
       operationId: getAllUsers
       parameters:
         - name: username
           in: query
           required: false
-          description: 'Searches by part of email string'
+          description: 'Searches by email substring'
           schema:
             type: string
         - name: role
@@ -167,7 +167,7 @@ paths:
             $ref: '#/components/schemas/EnumRole'
       responses:
         '200':
-          description: 'List of Users retreived successfuly!'
+          description: 'List of users fetched successfuly!'
           content:
             application/json:
               schema:
@@ -175,25 +175,17 @@ paths:
                 items:
                   $ref: '#/components/schemas/UserInfo'
         '401':
-          description: 'Unauthorized!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 'Forbidden!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
+          $ref: '#/components/responses/Forbidden'
     patch:
       tags:
         - 'admin'
       security:
         - bearerAuth: []
-      summary: 'Alter User Role'
-      description: 'Access enabled only to Admin'
-      operationId: alterUserRole
+      summary: 'Update user roles'
+      description: 'Access enabled to role: Admin'
+      operationId: updateUserRoles
       requestBody:
         required: true
         content:
@@ -202,29 +194,15 @@ paths:
               $ref: '#/components/schemas/AlterUserRolesForm'
       responses:
         '200':
-          description: 'Patched User Roles successfully!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OkMessage'
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
-          description: 'Unauthorized!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: 'Forbidden!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: 'User not Found!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
+          $ref: '#/components/responses/NotFound'
 
 components:
   schemas:
@@ -384,7 +362,7 @@ components:
           schema:
             $ref: '#/components/schemas/OkMessage'
     Unauthorized:
-      description: 'Operation failed due to lack of authentication or authorization'
+      description: 'Operation failed due to lack of authentication'
       content:
         application/json:
           schema:
@@ -401,7 +379,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-
+    Forbidden:
+      description: 'Operation failed due to lack of authorization'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthenticationError'
+  
   securitySchemes:
     bearerAuth:
       scheme: bearer
