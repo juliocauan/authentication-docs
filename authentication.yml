@@ -1,7 +1,7 @@
 openapi: '3.0.3'
 info:
   title: KeyWarden
-  version: '0.10.2'
+  version: '0.10.3'
 servers:
   - url: https://api.server.test/v1
 tags:
@@ -28,11 +28,7 @@ paths:
         '201':
           $ref: '#/components/responses/OK'
         '400':
-          description: 'Username already taken!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
+          $ref: '#/components/responses/BadRequest'
 
   /api/auth/signin:
     post:
@@ -54,6 +50,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
 
@@ -73,6 +71,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
     
@@ -109,26 +109,26 @@ paths:
         - 'profile'
       security:
         - bearerAuth: []
-      summary: 'User Profile Content'
-      description: 'Access enabled only to Authenticated User [Any Role]'
+      summary: 'Get user profile content'
+      description: 'Access enabled to Authenticated users [Any Role]'
       operationId: profileContent
       responses:
         '200':
-          description: 'User Profile Content received successfuly!'
+          description: 'User profile content fetched successfuly!'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Profile'
         '401':
-          description: 'You are not logged in!'
+          $ref: '#/components/responses/Unauthorized'
     patch:
       tags:
         - 'profile'
       security:
         - bearerAuth: []
-      summary: 'Alter User password'
-      description: 'Access enabled only to Authenticated User [Any Role]'
-      operationId: alterUserPassword
+      summary: 'Update user password'
+      description: 'Access enabled to Authenticated users [Any Role]'
+      operationId: updateUserPassword
       requestBody:
         required: true
         content:
@@ -137,15 +137,11 @@ paths:
               $ref: '#/components/schemas/PasswordUpdateForm'
       responses:
         '200':
-          description: 'User Password updated successfully!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OkMessage'
+          $ref: '#/components/responses/OK'
         '400':
-          description: 'Invalid Password Form!'
+          $ref: '#/components/responses/BadRequest'
         '401':
-          description: 'You are not logged in!'
+          $ref: '#/components/responses/Unauthorized'
 
   /api/auth/admin:
     get:
