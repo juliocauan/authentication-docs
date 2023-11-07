@@ -1,7 +1,7 @@
 openapi: '3.0.3'
 info:
-  title: KeyWarden
-  version: '0.11.0'
+  title: Authentication
+  version: '1.0.3'
 servers:
   - url: https://api.server.test/v1
 tags:
@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JWTResponse'
+                $ref: '#/components/schemas/BearerToken'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -283,17 +283,13 @@ components:
         - 'MANAGER'
         - 'USER'
       description: 'Client permissions. Must be hidden from Users'
-    JWTResponse:
+    BearerToken:
       type: object
       required:
-        - 'token'
-        - 'type'
+        - 'body'
       properties:
-        token:
+        body:
           type: string
-        type:
-          type: string
-          default: 'Bearer'
     Profile:
       type: object
       properties:
