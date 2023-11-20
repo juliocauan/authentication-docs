@@ -3,7 +3,7 @@ info:
   title: Authentication
   version: '1.0.5'
 servers:
-  - url: https://api.server.test/v1
+  - url: http://localhost:8000
 tags:
   - name: 'auth'
   - name: 'admin'
@@ -361,25 +361,25 @@ components:
           schema:
             $ref: '#/components/schemas/OkMessage'
     Unauthorized:
-      description: 'Operation failed: not authenticated'
+      description: 'Operation failed: Not Authenticated!'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/AuthenticationError'
     NotFound:
-      description: 'Operation failed: could not find provided resource!'
+      description: 'Operation failed: Could not find provided resource!'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
     BadRequest:
-      description: 'Operation failed: bad provided resource!'
+      description: 'Operation failed: Bad resources provided!'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
     Forbidden:
-      description: 'Operation failed: no authorization'
+      description: 'Operation failed: Not Authorized!'
       content:
         application/json:
           schema:
