@@ -16,7 +16,7 @@ paths:
       tags:
         - 'auth'
       summary: 'Register new user'
-      description: 'Check if there is an existing user and save a new one to database'
+      description: 'Check if there is an existing user and save a new one'
       operationId: signup
       requestBody:
         required: true
@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BearerToken'
+                $ref: '#/components/schemas/JWT'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -113,11 +113,11 @@ paths:
       security:
         - BearerAuth: []
       summary: 'Get user profile content'
-      description: 'Access enabled to Authenticated users [Any Role]'
+      description: 'Access enabled to authenticated users [any role]'
       operationId: profileContent
       responses:
         '200':
-          description: 'User profile content fetched successfuly!'
+          description: 'User profile content fetched successfully!'
           content:
             application/json:
               schema:
@@ -130,7 +130,7 @@ paths:
       security:
         - BearerAuth: []
       summary: 'Update user password'
-      description: 'Access enabled to Authenticated users [Any Role]'
+      description: 'Access enabled to Authenticated users [any role]'
       operationId: updateUserPassword
       requestBody:
         required: true
@@ -170,7 +170,7 @@ paths:
             $ref: '#/components/schemas/EnumRole'
       responses:
         '200':
-          description: 'List of users fetched successfuly!'
+          description: 'List of users fetched successfully!'
           content:
             application/json:
               schema:
@@ -234,12 +234,12 @@ components:
         message:
           type: string
           example: 'Full authentication is required to access this resource'
-    OkMessage:
+    OkResponse:
       type: object
       required:
-        - 'body'
+        - 'message'
       properties:
-        body:
+        message:
           type: string
           example: 'Success!'
 
@@ -269,7 +269,7 @@ components:
       type: string
       format: email
       description: 'User e-mail for contact and to redefine lost password [UNIQUE]'
-      example: 'example@example.com'
+      example: 'example@email.com'
       minLength: 3
       maxLength: 50
     Password:
@@ -286,13 +286,14 @@ components:
         - 'MANAGER'
         - 'USER'
       description: 'Client permissions. Must be hidden from Users'
-    BearerToken:
+    JWT:
       type: object
       required:
-        - 'body'
+        - 'token'
       properties:
-        body:
+        token:
           type: string
+          example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
     Profile:
       type: object
       properties:
@@ -359,7 +360,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/OkMessage'
+            $ref: '#/components/schemas/OkResponse'
     Unauthorized:
       description: 'Operation failed: Not Authenticated!'
       content:
