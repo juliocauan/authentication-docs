@@ -16,11 +16,6 @@ This API was developed as a personal challenge for learning different areas of d
  - Registration and Audit
  - Integration with Identity Systems
 
-<br/><br/>
-
-To run this API locally on DEV mode, visit [Authentication API Server](https://app.swaggerhub.com/apis-docs/juliocauan/authentication/1.1.x). <br/>
-Obs: DEV mode will only mock emails, it won't send real ones. Production mode will be available shortly.
-
 <br/>
 
 ***
@@ -66,5 +61,9 @@ To see all endpoints descriptions, visit [Authentication API OpenAPI(Swagger) Do
 ## 🔎 Project Status
 
 ![Status Badge](https://img.shields.io/badge/status-development-green)
+<br/>
+
+To run this API locally on DEV mode, visit [Authentication API Server](https://github.com/juliocauan/authentication-server). <br/>
+Obs: DEV mode will only mock emails, it won't send real ones. Production mode will be available shortly.
 
 <br/>
