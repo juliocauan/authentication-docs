@@ -16,8 +16,6 @@ This API was developed as a personal challenge for learning different areas of d
  - Registration and Audit
  - Integration with Identity Systems
 
-<br/>
-
 ***
 ## 🛠️ Functionalities
 **User Data Storage:**
@@ -34,8 +32,6 @@ This API was developed as a personal challenge for learning different areas of d
 
 To see all endpoints descriptions, visit [Authentication API OpenAPI(Swagger) Documentation](https://app.swaggerhub.com/apis-docs/juliocauan/authentication/1.1.x)
 
-<br/>
-
 ***
 ## 🔮 Future implementations
 
@@ -47,8 +43,6 @@ To see all endpoints descriptions, visit [Authentication API OpenAPI(Swagger) Do
 2. Multifactor Authentication
 
 3. Authentication via Google
-
-<br/>
 
 ***
 ## 📡 Used Technologies 
