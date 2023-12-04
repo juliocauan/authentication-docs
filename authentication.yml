@@ -107,23 +107,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 
   /api/auth/profile:
-    get:
-      tags:
-        - 'profile'
-      security:
-        - BearerAuth: []
-      summary: 'Get user profile content'
-      description: 'Access enabled to authenticated users [any role]'
-      operationId: profileContent
-      responses:
-        '200':
-          description: 'User profile content fetched successfully!'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Profile'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
     patch:
       tags:
         - 'profile'
@@ -294,11 +277,6 @@ components:
         token:
           type: string
           example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-    Profile:
-      type: object
-      properties:
-        username:
-          $ref: '#/components/schemas/Username'
     UpdateUserRolesForm:
       type: object
       required:
