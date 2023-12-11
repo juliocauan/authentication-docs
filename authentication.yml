@@ -3,7 +3,10 @@ info:
   title: Authentication
   version: '1.1.x'
 servers:
+  - url: http://http://localhost:8080
+    description: Production Environment
   - url: http://localhost:8000
+    description: Development Environment
 tags:
   - name: 'auth'
   - name: 'admin'
