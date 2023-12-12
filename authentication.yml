@@ -239,9 +239,7 @@ components:
         username:
           $ref: '#/components/schemas/Username'
         password:
-          $ref: '#/components/schemas/Password'
-        role:
-          $ref: '#/components/schemas/Role'
+          $ref: '#/components/schemas/PasswordMatch'
     SigninForm:
       type: object
       required:
