@@ -151,6 +151,33 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    delete:
+      tags:
+        - 'profile'
+      security:
+        - BearerAuth: []
+      summary: 'Close Account'
+      description: 'Deletes account of logged user'
+      operationId: closeAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: CloseAccountRequest
+              properties:
+                password:
+                  $ref: '#/components/schemas/Password'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
 
   /api/auth/admin/users:
     get:
