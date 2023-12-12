@@ -152,7 +152,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 
-  /api/auth/admin:
+  /api/auth/admin/users:
     get:
       tags:
         - 'admin'
@@ -212,36 +212,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-
-  /api/auth/admin/roles:
-    post:
-      tags:
-        - 'admin'
-      security:
-        - BearerAuth: []
-      summary: 'Register new Role'
-      description: 'Check if there is an existing Role and save a new one'
-      operationId: registerRole
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                role:
-                  $ref: '#/components/schemas/Role'
-      responses:
-        '201':
-          $ref: '#/components/responses/OK'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-  
-  /api/auth/admin/users:
     delete:
       tags:
         - 'admin'
@@ -271,7 +241,35 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-          
+
+  /api/auth/admin/roles:
+    post:
+      tags:
+        - 'admin'
+      security:
+        - BearerAuth: []
+      summary: 'Register new Role'
+      description: 'Check if there is an existing Role and save a new one'
+      operationId: registerRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  $ref: '#/components/schemas/Role'
+      responses:
+        '201':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  
 components:
   schemas:
     ApiError:
