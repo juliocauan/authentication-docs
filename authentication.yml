@@ -34,6 +34,25 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 
+  /api/auth/signup/admin:
+    post:
+      tags:
+        - 'auth'
+      summary: 'Register new Admin'
+      description: 'Check if there is an existing user and save a new one'
+      operationId: signupAdmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupFormAdmin'
+      responses:
+        '201':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
   /api/auth/signin:
     post:
       tags:
@@ -240,6 +259,19 @@ components:
           $ref: '#/components/schemas/Username'
         password:
           $ref: '#/components/schemas/PasswordMatch'
+    SignupFormAdmin:
+      type: object
+      required:
+        - 'username'
+        - 'password'
+        - 'adminPassword'
+      properties:
+        username:
+          $ref: '#/components/schemas/Username'
+        password:
+          $ref: '#/components/schemas/PasswordMatch'
+        adminPassword:
+          $ref: '#/components/schemas/Password'
     SigninForm:
       type: object
       required:
@@ -261,7 +293,7 @@ components:
       type: string
       format: password
       description: 'User password to access account'
-      example: '1234567890'
+      example: '@Password123'
       minLength: 8
       maxLength: 120
     Role:
