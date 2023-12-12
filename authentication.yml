@@ -269,6 +269,34 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+    get:
+      tags:
+        - 'admin'
+      security:
+        - BearerAuth: []
+      summary: 'Get list of Roles'
+      description: 'Access enabled to role: Admin'
+      operationId: getAllRoles
+      parameters:
+        - name: contains
+          in: query
+          required: false
+          description: 'Searches by role contains'
+          schema:
+            $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: 'List of roles fetched successfully!'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
   
 components:
   schemas:
