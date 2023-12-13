@@ -324,7 +324,36 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
-  
+    delete:
+      tags:
+        - 'admin'
+      security:
+        - BearerAuth: []
+      summary: 'Delete Role'
+      description: 'Deletes role from admin panel'
+      operationId: deleteRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: DeleteRoleRequest
+              properties:
+                Role:
+                  $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
 components:
   schemas:
     ApiError:
