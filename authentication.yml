@@ -2,6 +2,10 @@ openapi: '3.0.3'
 info:
   title: Authentication
   version: '1.1.x'
+  description: 'API for user Authentication and Authorization'
+  contact:
+    name: API developer
+    email: juliocauan@gmail.com
 servers:
   - url: http://localhost:8000
     description: Production Environment
@@ -12,10 +16,9 @@ tags:
   - name: 'auth'
   - name: 'admin'
   - name: 'profile'
-  - name: 'passwordResetToken'
 
 paths:
-  /api/auth/signup:
+  /signup:
     post:
       tags:
         - 'auth'
@@ -34,7 +37,7 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 
-  /api/auth/signup/admin:
+  /signup/admin:
     post:
       tags:
         - 'auth'
@@ -53,13 +56,13 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 
-  /api/auth/signin:
+  /login:
     post:
       tags:
         - 'auth'
       summary: 'User login'
       description: 'Authenticate {username, password} and generate a JWT'
-      operationId: signin
+      operationId: login
       requestBody:
         required: true
         content:
@@ -78,13 +81,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 
-  /api/auth/forgotpassword:
+  /forgot-password:
     post:
       tags:
-        - 'passwordResetToken'
+        - 'auth'
       summary: 'Send user an email with url/{token} to update his forgotten password'
       description: 'Access enabled to any role'
-      operationId: emailPasswordResetToken
+      operationId: emailPasswordResetUrl
       requestBody:
         required: true
         content:
@@ -102,13 +105,13 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
     
-  /api/auth/forgotpassword/{token}:  
+  /forgot-password/{token}:  
     patch:
       tags:
-        - 'passwordResetToken'
+        - 'auth'
       summary: 'Reset user password'
       description: 'Access enabled to any role'
-      operationId: resetUserPassword
+      operationId: resetPassword
       parameters:
         - name: token
           in: path
@@ -129,7 +132,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 
-  /api/auth/profile:
+  /profile:
     patch:
       tags:
         - 'profile'
@@ -137,7 +140,7 @@ paths:
         - BearerAuth: []
       summary: 'Update user password'
       description: 'Access enabled to Authenticated users [any role]'
-      operationId: updateUserPassword
+      operationId: updatePassword
       requestBody:
         required: true
         content:
@@ -179,7 +182,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 
-  /api/auth/admin/users:
+  /admin/users:
     get:
       tags:
         - 'admin'
@@ -187,7 +190,7 @@ paths:
         - BearerAuth: []
       summary: 'Get list of users'
       description: 'Access enabled to role: Admin'
-      operationId: getAllUsers
+      operationId: getUsers
       parameters:
         - name: username
           in: query
@@ -269,7 +272,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 
-  /api/auth/admin/roles:
+  /admin/roles:
     post:
       tags:
         - 'admin'
@@ -303,7 +306,7 @@ paths:
         - BearerAuth: []
       summary: 'Get list of Roles'
       description: 'Access enabled to role: Admin'
-      operationId: getAllRoles
+      operationId: getRoles
       parameters:
         - name: contains
           in: query
@@ -381,6 +384,14 @@ components:
         message:
           type: string
           example: 'Full authentication is required to access this resource'
+    AuthorizationError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: 'You do not have the credentials to access this resource'
     OkResponse:
       type: object
       required:
@@ -536,7 +547,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AuthenticationError'
+            $ref: '#/components/schemas/AuthorizationError'
   
   securitySchemes:
     BearerAuth:
