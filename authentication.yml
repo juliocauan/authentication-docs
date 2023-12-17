@@ -343,7 +343,7 @@ paths:
               type: object
               title: DeleteRoleRequest
               properties:
-                Role:
+                role:
                   $ref: '#/components/schemas/Role'
       responses:
         '200':
