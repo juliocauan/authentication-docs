@@ -500,11 +500,11 @@ components:
       type: object
       required:
         - 'currentPassword'
-        - 'newPasswordMatch'
+        - 'match'
       properties:
         currentPassword:
           $ref: '#/components/schemas/Password'
-        newPasswordMatch:
+        match:
           $ref: '#/components/schemas/PasswordMatch'
     PasswordMatch:
       type: object
