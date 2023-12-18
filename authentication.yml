@@ -192,7 +192,7 @@ paths:
       description: 'Access enabled to role: Admin'
       operationId: getUsers
       parameters:
-        - name: username
+        - name: usernameContains
           in: query
           required: false
           description: 'Searches by email substring'
