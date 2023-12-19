@@ -308,12 +308,12 @@ paths:
       description: 'Access enabled to role: Admin'
       operationId: getRoles
       parameters:
-        - name: contains
+        - name: nameContains
           in: query
           required: false
           description: 'Searches by role contains'
           schema:
-            $ref: '#/components/schemas/Role'
+            type: string
       responses:
         '200':
           description: 'List of roles fetched successfully!'
