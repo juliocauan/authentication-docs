@@ -566,6 +566,7 @@ components:
       enum:
         - 'GMAIL'
         - 'MAILER_SEND'
+      default: 'GMAIL'
     EmailAccess:
       type: object
       required:
