@@ -362,6 +362,35 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 
+  /admin/email:
+    put:
+      tags:
+        - 'admin'
+      security:
+        - BearerAuth: []
+      summary: 'Set emailer method'
+      description: 'Access enabled to role: Admin'
+      operationId: setEmailer
+      parameters:
+      - in: query
+        name: emailerType
+        required: true
+        schema:
+          $ref: '#/components/schemas/EmailType'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailAccess'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
 components:
   schemas:
     ApiError:
@@ -532,6 +561,21 @@ components:
           $ref: '#/components/schemas/Password'
         passwordConfirmation:
           $ref: '#/components/schemas/Password'
+    EmailType:
+      type: string
+      enum:
+        - 'GMAIL'
+        - 'MAILER_SEND'
+    EmailAccess:
+      type: object
+      required:
+        - 'username'
+        - 'key'
+      properties:
+        username:
+          $ref: '#/components/schemas/Username'
+        key:
+          type: string
 
   responses:
     OK:
