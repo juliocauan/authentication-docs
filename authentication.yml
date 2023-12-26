@@ -169,6 +169,8 @@ paths:
             schema:
               type: object
               title: CloseAccountRequest
+              required:
+                - 'password'
               properties:
                 password:
                   $ref: '#/components/schemas/Password'
