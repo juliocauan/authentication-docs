@@ -502,6 +502,7 @@ components:
     UserData:
       type: object
       required:
+        - 'roles'
         - 'JWT'
       properties:
         roles:
