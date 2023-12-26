@@ -75,7 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JWT'
+                $ref: '#/components/schemas/UserData'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -499,12 +499,17 @@ components:
       maxLength: 40
       example: 'ADMIN'
       description: 'Client permissions'
-    JWT:
+    UserData:
       type: object
       required:
-        - 'token'
+        - 'JWT'
       properties:
-        token:
+        roles:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/Role'
+        JWT:
           type: string
           example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
     UpdateUserRolesForm:
