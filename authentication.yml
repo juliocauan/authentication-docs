@@ -355,6 +355,8 @@ paths:
             schema:
               type: object
               title: DeleteRoleRequest
+              required:
+                - 'role'
               properties:
                 role:
                   $ref: '#/components/schemas/Role'
