@@ -1,63 +1,57 @@
-# Authentication and Authorization API - Documentation
+# Autenticação e Autorização API - Documentação
 
 ![youshallnotpass](https://github.com/juliocauan/authentication-server/assets/84354526/e4d27e22-8a5f-4d74-aacc-b95119852c10)
 
-***
-## 📖  Description
+## 📖 Descrição
 
-This is the documentation of a Rest API for user authentication and authorization. It limits user access to only what has been specifically assigned to them. <br/>
-This API was developed as a personal challenge for learning different areas of development, which are:
- - Cybersecurity
- - Web development
- - CI/CD
- - Database Administrator
- - Security and Data Retention Policies
- - Token Management
- - Registration and Audit
- - Integration with Identity Systems
+Esta é a documentação de uma API Rest para autenticação e autorização de usuários. Limitando o acesso do usuário apenas ao que foi especificamente atribuído a ele.
 
-***
-## 🛠️ Functionalities
-**User Data Storage:**
-   - Securely stores user data, including encrypted passwords and associated roles.
+Esta API foi desenvolvida como um desafio pessoal para aprender diferentes áreas de desenvolvimento, que são:
+- Cíber segurança
+- Desenvolvimento Web com Spring Boot
+- CI/CD
+- Administrador de Banco de Dados (DBA)
+- Políticas de Segurança e Retenção de Dados
+- Gerenciamento de tokens
+- Registro e Auditoria
+- Integração com Sistemas de Identidade
 
-**User Authentication with JWT:**
-   - Provides user authentication, generating JSON Web Tokens (JWT) upon successful login for secure access.
+## 🛠️ Funcionalidades
+**Armazenamento de dados do usuário**
+   - Armazena com segurança os dados do usuário, incluindo senhas criptografadas e funções associadas.
 
-**"Forgot Password" Feature:**
-   - Implements a secure "Forgot Password" functionality for users to reset their passwords.
+**Autenticação de usuário com JWT**
+   - Fornece autenticação do usuário, gerando JSON Web Tokens (JWT) após login bem-sucedido para acesso seguro.
 
-**Admin Role Management:**
-   - Enables administrators to update user roles for effective access control.
+**Recurso "Esqueci a senha"**
+   - Implementa uma funcionalidade segura "Esqueci minha senha" para que os usuários redefinam suas senhas.
 
-To see all endpoints descriptions, visit [Authentication API OpenAPI(Swagger) Documentation](https://app.swaggerhub.com/apis-docs/juliocauan/authentication/1.1.x)
+**Gerenciamento de funções administrativas**
+   - Permite que os administradores atualizem as funções dos usuários para um controle de acesso eficaz.
 
-***
-## 🔮 Future implementations
+Para ver todas as descrições de endpoints, visite a [página Swagger(OpenAPI)](https://app.swaggerhub.com/apis-docs/juliocauan/authentication/1.2.x)
 
-1. Extra Security Policies
-   - Strong Passwords
-   - Account block after failed login attemps
-   - Email verification upon user registration
+## 🔮 Futuras implementações
 
-2. Multifactor Authentication
+1. Políticas extras de segurança
+   - Bloqueio de conta após tentativas de login malsucedidas
+   - Verificação de e-mail ao registrar usuário
 
-3. Authentication via Google
+2. Autenticação multifator
 
-***
-## 📡 Used Technologies 
+3. Autenticação via Google
+
+4. Front-End responsivo desenvolvido em Angular
+
+## 📡 Tecnologias utilizadas 
 <div align="center">
   <img align="left" alt="OpenAPI (Swagger)" title="OpenAPI (Swagger)" height="30" width="30" src="https://avatars.githubusercontent.com/u/37325267?s=200&v=4">
 </div>
-<br/><br/>
+<br/>
 
-***
-## 🔎 Project Status
+## 🔎 Status do Projeto
 
 ![Status Badge](https://img.shields.io/badge/status-development-green)
 <br/>
 
-To run this API locally on DEV mode, visit [Authentication API Server](https://github.com/juliocauan/authentication-server). <br/>
-Obs: DEV mode will only mock emails, it won't send real ones. Production mode will be available shortly.
-
-<br/>
+Para executar essa API localmente, visite [Authentication API Server](https://github.com/juliocauan/authentication-server).
