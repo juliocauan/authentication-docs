@@ -256,16 +256,16 @@ paths:
         - 'admin'
       security:
         - BearerAuth: []
-      summary: 'Delete User'
-      description: 'Deletes user from admin panel'
-      operationId: deleteUser
+      summary: 'Disable User'
+      description: 'Disables user from admin panel'
+      operationId: disableUser
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              title: DeleteUserRequest
+              title: DisableUserRequest
               required:
                 - 'username'
               properties:
