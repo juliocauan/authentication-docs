@@ -1,17 +1,20 @@
 openapi: '3.0.3'
+
 info:
   title: Authentication
-  version: '1.2.x'
+  version: '1.4.x'
   description: 'API for user Authentication and Authorization'
   contact:
     name: API developer
     email: juliocauan@gmail.com
+
 servers:
   - url: http://localhost:8000
     description: Production Environment
     
   - url: http://localhost:8080
     description: Development Environment
+
 tags:
   - name: 'auth'
   - name: 'admin'
@@ -444,6 +447,7 @@ components:
         message:
           type: string
           example: 'Success!'
+    # TODO remove this and implement x-spring-paginated
     Page:
       type: object
       properties:
@@ -624,7 +628,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AuthorizationError'
-  
+
   securitySchemes:
     BearerAuth:
       scheme: bearer
