@@ -167,18 +167,12 @@ paths:
       summary: 'Close Account'
       description: 'Deletes account of logged user'
       operationId: closeAccount
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              title: CloseAccountRequest
-              required:
-                - 'password'
-              properties:
-                password:
-                  $ref: '#/components/schemas/Password'
+      parameters:
+        - name: password
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Password'
       responses:
         '200':
           $ref: '#/components/responses/OK'
@@ -258,18 +252,12 @@ paths:
       summary: 'Disable User'
       description: 'Disables user from admin panel'
       operationId: disableUser
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              title: DisableUserRequest
-              required:
-                - 'username'
-              properties:
-                username:
-                  $ref: '#/components/schemas/Username'
+      parameters:
+        - name: username
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Username'
       responses:
         '200':
           $ref: '#/components/responses/OK'
@@ -347,18 +335,12 @@ paths:
       summary: 'Delete Role'
       description: 'Deletes role from admin panel'
       operationId: deleteRole
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              title: DeleteRoleRequest
-              required:
-                - 'role'
-              properties:
-                role:
-                  $ref: '#/components/schemas/Role'
+      parameters:
+        - name: role
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Role'
       responses:
         '200':
           $ref: '#/components/responses/OK'
