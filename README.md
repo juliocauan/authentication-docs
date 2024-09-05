@@ -29,7 +29,7 @@ Esta API foi desenvolvida como um desafio pessoal para aprender diferentes área
 **Gerenciamento de funções administrativas**
    - Permite que os administradores atualizem as funções dos usuários para um controle de acesso eficaz.
 
-Para ver todas as descrições de endpoints, visite a [página Swagger(OpenAPI)](https://app.swaggerhub.com/apis-docs/juliocauan/authentication/1.2.x)
+Para ver todas as descrições de endpoints, visite a [página Swagger(OpenAPI)](https://app.swaggerhub.com/apis/juliocauan/authentication/1.5.x-oas3)
 
 ## 🔮 Futuras implementações
 
