@@ -2,7 +2,7 @@ openapi: '3.0.3'
 
 info:
   title: Authentication
-  version: '1.4.x'
+  version: '1.5.x'
   description: 'API for user Authentication and Authorization'
   contact:
     name: API developer
@@ -380,12 +380,6 @@ paths:
       summary: 'Set emailer method'
       description: 'Access enabled to role: Admin'
       operationId: setEmailer
-      parameters:
-      - in: query
-        name: emailerType
-        required: true
-        schema:
-          $ref: '#/components/schemas/EmailType'
       requestBody:
         required: true
         content:
@@ -575,11 +569,14 @@ components:
       required:
         - 'username'
         - 'key'
+        - 'emailType'
       properties:
         username:
           $ref: '#/components/schemas/Username'
         key:
           type: string
+        emailType:
+          $ref: '#/components/schemas/EmailType'
 
   responses:
     OK:
