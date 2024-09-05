@@ -198,6 +198,7 @@ paths:
       summary: 'Get list of users'
       description: 'Access enabled to role: Admin'
       operationId: getUsers
+      x-spring-paginated: true
       parameters:
         - name: usernameContains
           in: query
@@ -211,11 +212,6 @@ paths:
           description: 'Searches by role'
           schema:
             $ref: '#/components/schemas/Role'
-        - name: page
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/Page'
       responses:
         '200':
           description: 'List of users fetched successfully!'
@@ -447,18 +443,6 @@ components:
         message:
           type: string
           example: 'Success!'
-    # TODO remove this and implement x-spring-paginated
-    Page:
-      type: object
-      properties:
-        number:
-          type: integer
-          format: int32
-          default: 0
-        size:
-          type: integer
-          format: int32
-          default: 25
 
     SignupForm:
       type: object
